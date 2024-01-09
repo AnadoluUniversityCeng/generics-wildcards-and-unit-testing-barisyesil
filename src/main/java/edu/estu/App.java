@@ -58,16 +58,23 @@ public class App {
      * Hint: Map.merge() - One method to rule them all
      * https://nurkiewicz.com/2019/03/mapmerge-one-method-to-rule-them-all.html
      */
-    static <> void {
+    static <E extends Enum<E>> void incrementCountMapGenerics(Map<E, Integer> map, E key) {
+        map.merge(key, 1, Integer::sum);
     }
 
-    static void {
+
+    static void incrementCountMapWildcard(Map<? super Enum<?>, Integer> map, Enum<?> key) {
+        map.merge(key, 1, Integer::sum);
     }
 
-    static <> void {
+
+
+    static <E extends Enum<E>> void incrementCountMapEnumDescG(Map<Enum.EnumDesc<E>, Integer> map, Enum.EnumDesc<E> key) {
+        map.merge(key, 1, Integer::sum);
     }
 
-    static void {
+    static void incrementCountMapEnumDescW(Map<Enum.EnumDesc<?>, Integer> map, Enum.EnumDesc<?> key) {
+        map.merge(key, 1, Integer::sum);
     }
 }
 
